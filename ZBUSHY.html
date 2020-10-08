@@ -1,0 +1,294 @@
+<!DOCTYPE HTML>
+<HTML>
+	<head>
+		<title>BUSHY FOREST | ZAKIYA CAMP</title>
+		<script type="text/javascript"> 
+			function display_c(){
+				var refresh = 1000; // Refresh rate in milli seconds
+				mytime = setTimeout('display_ct()',refresh)
+			}
+
+			function display_ct() {
+				var x = new Date();
+				var n = new Date();
+				// MOUNTAIN
+				if (x.getHours() >= 8 && ( x.getHours() <= 11 && x.getMinutes <= 59 )) {
+				   	// document.getElementById("mtlink").disabled = false;
+				   	document.getElementById("bmount").disabled = false;
+				    document.getElementById("schedmount").disabled = false;
+				    document.getElementById("schedmount").innerText =  "";
+				} else {
+					// document.getElementById("mtlink").disabled = true;
+				    document.getElementById("bmount").disabled = true;
+				    document.getElementById("schedmount").disabled = true;
+				    document.getElementById("schedmount").innerText =  "\n Be back here between 8 AM and 12 NN";
+				}
+
+				// SWAMP
+				if (x.getHours() >= 13 && ( x.getHours() <= 17 && x.getMinutes() <= 59)) {
+				   	document.getElementById("schedswamp").innerText = "";
+				    document.getElementById("bswamp").disabled = false;
+				    document.getElementById("schedswamp").disabled = false;
+				} else {
+				    document.getElementById("schedswamp").innerText = "\n Be back here between 1 PM and 6 PM";
+				    document.getElementById("bswamp").disabled = true;
+				    document.getElementById("schedswamp").disabled = true;
+				}
+
+				// BUSHY FOREST
+				if (x.getHours() >= 6 && ( x.getHours() <= 9 && x.getMinutes() <= 59)) {
+				    document.getElementById("bbushyf").disabled = false;
+				    document.getElementById("schedbushy").disabled = false;
+				    document.getElementById("schedbushy").innerText = "";
+				} else {
+				    document.getElementById("bbushyf").disabled = true;
+				    document.getElementById("schedbushy").disabled = true;
+				    window.location.href = "https://stranded-zakiya-map.herokuapp.com/";
+				}
+
+				// FOREST
+				if (x.getHours() >= 23 || (x.getHours() >= 0 && ( x.getHours() <= 2 && x.getMinutes() <= 59))){
+				   	text = "";
+				    document.getElementById("bforest").disabled = false;
+				    document.getElementById("schedforest").disabled = false;
+				    document.getElementById("schedforest").innerText = text;
+				} else {
+					var text = "";
+					text = "Be back here between 11 PM and 3 AM";
+				    document.getElementById("bforest").disabled = true;
+				    document.getElementById("schedforest").disabled = true;
+				    document.getElementById("schedforest").innerText = "\n" + text;
+				}
+
+				const oneDay = 24 * 60 * 60 * 1000;
+
+				var month = new Array();
+				month[0] = "January";
+				month[1] = "February";
+				month[2] = "March";
+				month[3] = "April";
+				month[4] = "May";
+				month[5] = "June";
+				month[6] = "July";
+				month[7] = "August";
+				month[8] = "September";
+				month[9] = "October";
+				month[10] = "November";
+				month[11] = "December";
+
+				var m = month[x.getMonth()];
+
+				document.getElementById('ct').innerHTML = m.toUpperCase() + " " + x.getDate();
+
+				var y = new Date ("2020-10-10");
+				var diffDays = Math.round(Math.abs((y - x) / oneDay));
+				if (x < y){
+					document.getElementById('ct2').innerHTML = (diffDays) + " DAYS BEFORE MAROONING";
+					display_c();
+				}else{
+					diffDays = Math.round(Math.abs((x - y) / oneDay));
+					document.getElementById('ct2').innerHTML = "DAY " + (diffDays);
+					display_c();
+				}
+
+				// CONVERT HOURS
+				var h = 0;
+				var d;
+
+				if (x.getHours() == 0){
+					if (x.getMinutes() == 0){
+						d = "MN";
+					}else{
+						d = "AM"
+					}
+					h = 12;
+				}else if (x.getHours() > 12){
+					h = x.getHours() - 12;
+					d = "PM";
+				}else if (x.getHours() == 12){
+					if (x.getMinutes() == 0){
+						d = "NN";
+					}else{
+						d = "PM"
+					}
+					h = 12;
+				}else{
+					d = "AM";
+					h = x.getHours();
+				}
+
+				document.getElementById("ctime").innerHTML = (h<10?'0':'') + h + ":" + (x.getMinutes()<10?'0':'') + x.getMinutes() + " " + d;
+
+				display_c();
+			}
+
+		</script>
+		<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" rel="stylesheet"/>
+		<style type="text/css">
+			area[data-title]:hover:after {
+			content: attr(data-title);
+			background: rgba(0,0,0,0.5);
+			color: white;
+			opacity: 1;
+			height: 50px;
+			width: 150px;
+			position: absolute;
+			text-align: center;
+			padding-top: 14px;
+			left: 0;
+			top: 0;
+		}
+		.button {
+		  background-color: blue;
+		  border: none;
+		  color: black;
+		  padding: 16px 32px;
+		  text-align: center;
+		  text-decoration: none;
+		  display: inline-block;
+		  font-size: 16px;
+		  margin: 4px 2px;
+		  transition-duration: 0.4s;
+		  cursor: pointer;
+		  font-family: Roboto;
+		}
+
+		.button1 {
+		  background-color: white; 
+		  color: black; 
+		  border: 2px solid blue
+		}
+
+		.button1:hover:enabled {
+		  background-color: blue;
+		  color: white;
+		}
+
+		.button1:disabled {
+		  background-color: gray; 
+		  color: white; 
+		  border: 2px solid gray
+		}
+		/* Create two equal columns that floats next to each other */
+		.column1 {
+		  	float: left;
+		  	width: 80%;
+		  	padding-left: 25px;
+		  	padding-top: 10px;
+		}
+		.column2 {
+			font-family: Roboto;
+		  	float: left;
+		  	width: 20%;
+		  	padding: 5px;
+		}
+		.column3 {
+			font-family: Roboto;
+		  	float: left;
+		  	width: 25%;
+		  	padding: 5px;
+		}
+		span:disabled {
+  			pointer-events: none;
+			cursor: default;
+		}
+		/* Clearfix (clear floats) */
+		.row::after {
+		  	content: "";
+		  	clear: both;
+		  	display: table;
+		}
+		.now {
+			background-color: green !important;
+			color: white;
+		}
+		#ct{
+			font-family: Roboto;
+		}
+		body {
+			overflow: hidden;
+		}			
+		</style>
+	</head>
+	<script type="text/javascript" src="hover.js"></script>
+	<body oncontextmenu="return false" onkeydown="return false;" onmousedown="return false;" onload="display_ct()">
+		
+
+		<div class="row">
+			<div class="column1">
+		    	<img onclick="showCoords(event)" src="ZBUSHY.jpg" usemap="#worldmap" style="width: 100%">
+		  	</div>
+		  	<div class="column2">
+
+		    	
+	    		<button type="submit" onclick="location.href='ZCAMP.html';" class="button button1" style="width: 250px" id="bcamp">
+	    			CAMP
+	    		</button>
+		    	<br>
+
+
+				<button type="submit" onclick="location.href='ZMOUNTAIN.html';" class="button button1" style="width: 250px" id="bmount">
+					MOUNTAIN
+					<i><span id="schedmount" style="font-size: 10px"></span></i></br>
+				</button>
+				<br>
+
+				
+				<button type="submit" onclick="location.href='ZBUSHY.html';" class="button button1 now" style="width: 250px" id="bbushyf">
+					BUSHY FOREST
+					<i><span id="schedbushy" style="font-size: 10px"></span></i></br>
+				</button>
+				<br>
+
+			
+				<button type="submit" onclick="location.href='ZFOREST.html';" class="button button1" style="width: 250px" id="bforest">
+					FOREST
+					<i><span id="schedforest" style="font-size: 10px"></span></i></br>
+				</button>
+				<br>
+
+				
+				<button type="submit" onclick="location.href='ZSWAMP.html';" class="button button1" style="width: 250px" id="bswamp">
+					SWAMP
+					<i><span id="schedswamp" style="font-size: 10px"></span></i>
+				</button>
+				<br>
+
+				
+				<button type="submit" onclick="location.href='ZWATERWELL.html';" class="button button1" style="width: 250px" id="bwaterwell">
+					WATERWELL
+				</button>
+				<br>
+
+				<button type="submit" onclick="location.href='/';" class="button button1" style="width: 250px" id="home">
+					ZAKIYA MAP
+				</button>
+		  	</div>
+		</div>
+
+
+	<script type="text/javascript">
+		$(document).bind("contextmenu",function(e) {
+			e.preventDefault();
+		});
+	</script>
+
+	<script type="text/javascript">
+		$(document).keydown(function(e){
+		    if(e.which === 123){
+		       return false;
+		    }
+		});
+	</script>
+	<script type="text/javascript" src="hover.js"></script>
+	<!-- <script>
+		function loadPWSwansea(){
+			var s1Pass;
+
+			do{
+				s1Pass = prompt("Swansea Password");
+			} while (s1Pass != "QFma7WF");
+		}
+	</script> -->
+	</body>
+</HTML>
