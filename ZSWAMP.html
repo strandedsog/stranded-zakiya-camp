@@ -211,7 +211,23 @@
 		}	
 		a span#schedmount{
 
-		}		
+		}
+		body {
+			overflow: hidden;
+		}	
+		#overlay {
+			position: fixed;
+			display: none;
+			width: 100%;
+			height: 100%;
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			background-color: rgba(0,0,0,0.7);
+			z-index: 2;
+			cursor: pointer;
+		}			
 		</style>
 	</head>
 	<body oncontextmenu="return false" onkeydown="return false;" onmousedown="return false;" onload="display_ct()">
@@ -220,7 +236,13 @@
 		<div class="row">
 			<div class="column1">
 		    	<img onclick="showCoords(event)" src="ZSWAMP.jpg" usemap="#worldmap" style="width: 100%">
+		    	<map name="worldmap" id="worldmap">
+					<area shape="rect" coords="470.8, 499.8	, 500, 471" class="target" href="#" onclick="on()">
+				</map>
 		  	</div>
+		  	<div id="overlay" onclick="off()" style="padding-top: 20%">
+				<center><img src="folded_pouch.png" style="height: 200px"></center>
+			</div>	
 		  	<div class="column2">
 
 		    	
@@ -283,7 +305,7 @@
 		    }
 		});
 	</script>
-	
+	<script type="text/javascript" src="hover.js"></script>
 	<!-- <script>
 		function loadPWSwansea(){
 			var s1Pass;
